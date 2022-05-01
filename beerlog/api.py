@@ -15,7 +15,7 @@ def list_beers():
     return beers
 
 
-@api.post("/beers/", response_model=BeerOut)
+@api.post("/beers/", response_model=BeerOut, status_code=201)
 def add_beer(beer_in: BeerIn):
     beer = Beer(**beer_in.dict())
     with get_session() as session:
