@@ -36,12 +36,11 @@ jobs:
       - name: Run tests
         run: poetry run pytest -v --junitxml=test-result.xml
       
-      - name: publish junit results
+      - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
         with:
-          files: test-result.xml
-          check_name: Test Result (Python ${{matrix.python-version}})
+          files: "test-results/**/*.xml"
   deploy:
     runs-on: ubuntu-latest
     needs: test
